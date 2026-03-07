@@ -13,7 +13,7 @@ function App() {
     if (!username) return;
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/lastfm/toptracks/${username}`);
+      const res = await axios.get(`https://ai-playlist-generator-backend.onrender.com/lastfm/toptracks/${username}`);
       setTracks(res.data.toptracks.track);
       setStep(2);
     } catch (error) {
@@ -29,8 +29,7 @@ function App() {
         name: t.name,
         artist: t.artist.name
       }));
-      const res = await axios.post('http://localhost:5000/generate-playlist', {
-        tracks: trackData
+     const res = await axios.post('https://ai-playlist-generator-backend.onrender.com/generate-playlist', {
       });
       setPlaylist(res.data.playlist);
       setStep(3);

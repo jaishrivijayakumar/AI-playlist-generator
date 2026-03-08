@@ -25,11 +25,13 @@ function App() {
   const generatePlaylist = async () => {
     setLoading(true);
     try {
+      // eslint-disable-next-line
       const trackData = tracks.map(t => ({
         name: t.name,
         artist: t.artist.name
       }));
      const res = await axios.post('https://ai-playlist-generator-backend.onrender.com/generate-playlist', {
+        tracks: trackData
       });
       setPlaylist(res.data.playlist);
       setStep(3);
